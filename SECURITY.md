@@ -1,12 +1,12 @@
-# Security and privacy
+# Security and configuration
 
-**Immediate action required:** The provided original development archive contained a hard-coded Supabase **service-role key** in `SupabaseUploader.java`. Service-role credentials can bypass row-level security. **Revoke/rotate that key in the original Supabase project immediately**, and never publish the original ZIP. The professional upload package omits the key.
+**Important incident:** The originally provided development archive contained a Supabase `service_role` key hard-coded inside `SupabaseUploader.java`, plus a publishable/anon key in `gradle.properties`. The service-role key can bypass Row Level Security. **Revoke / rotate the service-role key in Supabase immediately**, even though it has not been included in this repository. Do not publish the original archive.
 
-- The original Firebase `app/google-services.json` is not included; each developer should configure their own project. Project-specific Firebase configuration is not necessarily a secret, but should not make forks share the original backend.
-- Supabase `SUPABASE_URL` and **anon/publishable** keys belong in a private developer configuration. Supabase **service-role/secret keys must never be embedded in client code, Android resources, Gradle commits or an APK**.
-- Firebase-authenticated users are not automatically Supabase Auth users. Direct client storage operations require a properly secured authorization design, e.g., a backend verifying Firebase ID tokens and issuing scoped upload URLs. Do not enable public unrestricted writes to make uploads function.
-- Restrict Firebase Firestore / Realtime Database rules per user or membership role, validate event data, and prevent unauthorized access to chat, attendance and profile records.
-- Never commit real member names, contact details, photos, account records, tokens, signing keys or local database backups.
-- Android backups are disabled in the prepared source. Conduct a full security and privacy review before real-world use.
-
-To report a security issue, contact the repository maintainer privately.
+- `app/google-services.json` is intentionally excluded. Developers must supply their own Firebase Android configuration.
+- A Firebase API key in `google-services.json` is not normally a server-side secret, but the original project-specific configuration is intentionally omitted to avoid coupling forks to someone else's Firebase project.
+- Set only `SUPABASE_URL` and a **publishable/anon** key in your user `~/.gradle/gradle.properties`. Never embed a Supabase `service_role` / secret key in a client APK or source.
+- **Firebase Auth is not Supabase Auth.** A Firebase-authenticated user's ID token does not automatically authorize Supabase Storage RLS. Use a verified backend / server-side upload token service and strong per-user policies for sensitive files. The legacy client-side uploader is preserved for learning, but is not verified for secure production upload.
+- Apply strict Firebase Firestore and Realtime Database rules, turn on necessary auth providers, configure App Check where applicable, and test with separate user accounts.
+- Disable untrusted device backups for membership data; the manifest sets `allowBackup=false`.
+- Do not publish member data, profiles, real event records, uploaded files, private keys, signed APKs, or storage service credentials.
+- Report vulnerabilities privately to the maintainer.

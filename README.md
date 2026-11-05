@@ -1,66 +1,53 @@
-# Cardinia Men's Shed
+# Cardinia Men's Shed — Community Android App
 
-Android community management application for community events, attendance, member chat, marketplace listings and profiles.
+Android community-management application built with **Java**, **Firebase Authentication**, **Cloud Firestore**, and **Supabase Storage**. Designed to support community engagement, events, attendance, chat, member profiles, and a member marketplace.
 
-[![Android CI](https://github.com/azaanmalik/cardinia-mens-shed/actions/workflows/android-ci.yml/badge.svg)](https://github.com/azaanmalik/cardinia-mens-shed/actions/workflows/android-ci.yml)
+> Portfolio project. This repository provides source code and setup guidance, but **does not include production cloud credentials, real member records, Firebase configuration or database rules**. Backend-dependent functions require separate configuration and access controls.
 
-## Overview
+## Key modules
 
-A Java Android app integrating **Firebase Authentication**, **Cloud Firestore** and **Supabase Storage** to support a community membership experience.
+- Member registration, sign-in and password reset through Firebase Auth
+- Dashboard and member profile with photo upload
+- Community events: create, browse, join and book events
+- Attendance records and participation tracking
+- Event chat and member interaction
+- Community marketplace and item listings
+- Information / website WebView
 
-**Features:** registration and login, password reset, member profiles, event discovery and booking, attendance, event chat, marketplace items and information pages.
+## Technology
 
-## Stack
-
-| Layer | Implementation |
+| Layer | Technology |
 | --- | --- |
-| Android | Java, AndroidX, Material Design, ViewBinding |
-| Build | Gradle 8.7, Java 17, Android Gradle Plugin |
-| Android versions | compileSdk 35, targetSdk 34, minSdk 24 |
-| Authentication | Firebase Auth |
-| Data | Cloud Firestore and Firebase database dependencies |
-| Images | Supabase Storage with Glide and Coil |
+| Android | Java, AndroidX, Material Components, ViewBinding |
+| Build | Gradle 8.7, Android Gradle Plugin 8.x, Java 17 |
+| SDK | compileSdk 35, targetSdk 34, minSdk 24 |
+| Identity | Firebase Authentication |
+| Cloud data | Cloud Firestore and Firebase Realtime Database libraries |
+| Images | Supabase Storage, Glide, Coil |
 
-## Run from source
+## Run with your own cloud project
 
-1. Clone this repository and open its root directory in **Android Studio**.
-2. Install **JDK 17** and Android SDK Platform **35**, then sync Gradle.
-3. Create your own Firebase project, register Android package `com.example.cardiniamensshed`, enable Email/Password Auth and configure Firestore access rules.
-4. Download your Firebase Android configuration as `google-services.json` and save it locally at `app/google-services.json`. **It is excluded from Git.**
-5. If using Supabase Storage, configure your own Supabase URL and **publishable/anon key** as `SUPABASE_URL` and `SUPABASE_ANON_KEY` in your **user-level** `~/.gradle/gradle.properties` (see `gradle-secrets.example.properties`). **Never put a service-role/secret key in an APK.**
-6. Set up the `profile-pictures` and `event-images` buckets and a **secure authorization integration**. Firebase Auth does not automatically grant Supabase Storage permissions; a verified backend or signed-upload solution is needed. The original direct upload is not production-secure.
-7. Run on an emulator or Android 7.0+ device.
+1. Clone this repository and open the **root** (containing `settings.gradle.kts`) in Android Studio.
+2. Install **JDK 17** and Android SDK **Platform 35**, including required build tools, then sync Gradle.
+3. Create a Firebase project and register an Android app with package ID `com.example.cardiniamensshed`. Enable Email/Password authentication and set up Cloud Firestore. Obtain your own `google-services.json` from Firebase Console and place it at **`app/google-services.json`**; it is gitignored.
+4. Create a Supabase project and appropriate Storage buckets named `profile-pictures` and `event-images` (if you plan to use image upload). Add **public URL** and **anon/publishable client key**, *never* a `service_role`/secret key, to your **user-level** `~/.gradle/gradle.properties` (see `gradle-secrets.example.properties`).
+5. **Security requirement:** Firebase Auth identity is not automatically recognized by Supabase Auth or Supabase RLS. Direct Supabase Storage uploads require a correctly designed, restricted authorization solution (for example, a backend that verifies Firebase ID tokens and issues time-limited signed upload URLs). The original direct-upload architecture is **not production secure**; do not open public write access merely to make it work. Profile/event images may not upload until a secure integration is added.
+6. In Firebase, configure Firestore/Realtime Database **security rules and required indexes** for your own application. Do not use unrestricted public read/write rules.
+7. Run the `app` configuration on Android 7.0 (API 24) or newer. For a terminal build, run `./gradlew :app:assembleDebug :app:testDebugUnitTest` (Windows: `gradlew.bat`).
 
-Build and run unit tests:
+## Build / CI details
 
-```bash
-./gradlew :app:assembleDebug :app:testDebugUnitTest
-```
+GitHub Actions validates the Android debug APK build and runs local unit tests. To allow a **build-only** validation without accessing anyone's Firebase project, CI generates a **synthetic** `google-services.json` compatible with the application package. Synthetic config is **not a functioning backend** and cannot be used for Firebase authentication or messaging. Real Firebase configuration must be supplied privately by each developer.
 
-Windows: `gradlew.bat :app:assembleDebug :app:testDebugUnitTest`.
+A successful CI build verifies compilation, **not** end-to-end sign-in, secure cloud storage permissions, Firebase integration, paid orders, or emulator UI behavior.
 
-## Repository layout
+## Privacy / security
 
-```text
-app/src/main/java/com/example/cardiniamensshed/  Java application code
-app/src/main/res/                            Layouts, icons, themes and menus
-app/src/test/                                Local unit tests
-app/src/androidTest/                         Device tests
-app/build.gradle.kts                         Android build and dependencies
-gradle/wrapper/                              Gradle wrapper
-.github/workflows/android-ci.yml             Build verification
-SECURITY.md                                  Cloud privacy and safety guidance
-gradle-secrets.example.properties            Local config example
-```
-
-## Build vs. functional verification
-
-GitHub Actions will compile the debug APK and execute unit tests **after the source upload**. The CI build uses synthetic Firebase configuration for **build-only** checks: it is not a running cloud backend. Firebase features require your own project, rules and credentials; storage uploads require secure authorization design. Passing CI does not confirm cloud integration or emulator UX.
-
-## Security notice
-
-**The original development ZIP contained a hardcoded Supabase `service_role` key. Revoke/rotate this key in Supabase immediately.** This repository's clean source package omits it, excludes the original Firebase configuration and removes local SDK settings and build artifacts. See [SECURITY.md](SECURITY.md).
+- No real user data, service-role secrets, production Firebase config or generated APKs are included.
+- This archive originally contained a hardcoded **Supabase service-role key**. **Rotate/revoke that key immediately** in the original Supabase project. The uploaded GitHub package replaces the key with non-secret client configuration and excludes original credentials.
+- The Android app is not suitable for storing actual sensitive membership information without backend access-control, privacy-policy and storage authorization reviews.
+- See [SECURITY.md](SECURITY.md) for security caveats.
 
 ## License
 
-[MIT](LICENSE) applies to original software where contributors have the rights to grant it. Third-party content and assets keep their own terms.
+See [LICENSE](LICENSE). The MIT license applies to original code only where contributors hold appropriate rights; third-party libraries, images and content retain their own licenses.
