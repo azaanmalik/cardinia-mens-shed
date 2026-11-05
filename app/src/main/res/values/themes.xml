@@ -1,0 +1,21 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+<!-- Base application theme -->
+<style name="Theme.CardiniaMensShed" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <item name="colorPrimary">@color/primaryColor</item>
+    <item name="colorPrimaryVariant">@color/primaryDarkColor</item>
+    <item name="colorAccent">@color/accentColor</item>
+    <item name="android:statusBarColor">@color/primaryDarkColor</item>
+    <item name="android:windowBackground">@color/lightGray</item>
+
+    <!-- Add these to fix button color issue -->
+    <item name="materialButtonStyle">@style/Widget.CMSApp.Button</item>
+</style>
+
+<!-- Custom button style to ensure contrast -->
+<style name="Widget.CMSApp.Button" parent="Widget.MaterialComponents.Button">
+    <item name="backgroundTint">@color/primaryColor</item>
+    <item name="android:textColor">@android:color/white</item>
+</style>
+</resources>
+
+

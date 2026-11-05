@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <!-- Circle Outline -->
+    <path
+        android:strokeColor="@color/nav_drawer_icon_color"
+        android:strokeWidth="2"
+        android:fillColor="@android:color/transparent"
+        android:pathData="M12,2c5.52,0 10,4.48 10,10s-4.48,10 -10,10 -10,-4.48 -10,-10 4.48,-10 10,-10z" />
+    <!-- "i" Stem -->
+    <path
+        android:fillColor="@color/nav_drawer_icon_color"
+        android:pathData="M11,10h2v6h-2z" />
+    <!-- "i" Dot -->
+    <path
+        android:fillColor="@color/nav_drawer_icon_color"
+        android:pathData="M11,7h2v2h-2z" />
+</vector>

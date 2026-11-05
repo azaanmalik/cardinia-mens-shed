@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/search_field"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Search for events..."
+                android:padding="12dp"
+                android:background="@drawable/search_field_bg"
+                android:layout_marginBottom="8dp" />
+
+            <!-- Spinner for category -->
+            <Spinner
+                android:id="@+id/spinner_category"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp" />
+
+            <!-- Button for picking date -->
+            <Button
+                android:id="@+id/button_pick_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Pick Date"
+                android:layout_marginBottom="8dp" />
+
+            <Button
+                android:id="@+id/search_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Search"
+                android:textColor="@android:color/white"
+                android:background="@drawable/button_bg"
+                android:layout_marginBottom="8dp" />
+
+            <Button
+                android:id="@+id/create_event_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Create Event"
+                android:textColor="@android:color/white"
+                android:background="@drawable/button_bg"
+                android:layout_marginBottom="8dp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/events_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:clipToPadding="false"
+        android:padding="10dp"
+        android:layout_marginBottom="30dp"
+        android:scrollbars="vertical" />
+
+</LinearLayout>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primaryColor">#3F51B5</color>       <!-- Blue -->
+    <color name="primaryDarkColor">#303F9F</color>   <!-- Darker Blue -->
+    <color name="accentColor">#FF4081</color>        <!-- Pink (optional) -->
+    <color name="lightGray">#F5F5F5</color>
+    <color name="gray">#CCCCCC</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="errorRed">#F44336</color> <!-- Standard red for error or delete actions -->
+    <color name="primary_dark">#303F9F</color>
+    <color name="accent">#FF4081</color>
+    <color name="bottom_nav_icon_color">#3F51B5</color>  <!-- Blue -->
+    <color name="bottom_nav_text_color">#3F51B5</color>  <!-- Blue -->
+    <color name="nav_drawer_icon_color">#3F51B5</color>  <!-- Blue -->
+</resources>
+
+

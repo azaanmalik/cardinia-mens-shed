@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+
+    <!-- Outer Circle with Filled Boundary Only -->
+    <path
+        android:strokeWidth="2"
+        android:strokeColor="@color/bottom_nav_icon_color"
+        android:pathData="M12,2a10,10 0 1,0 10,10A10,10 0 0,0 12,2Z" />
+
+    <!-- Question Mark -->
+    <path
+        android:fillColor="@color/nav_drawer_icon_color"
+        android:pathData="M12,7c1.3,0 2.5,1 2.5,2.2 0,0.9 -0.6,1.6 -1.5,2.1l-0.5,0.3c-0.4,0.2 -0.5,0.4 -0.5,0.7v0.6h-1.2v-0.6c0,-0.7 0.4,-1.2 0.9,-1.5l0.6,-0.4c0.5,-0.3 0.8,-0.8 0.8,-1.3 0,-0.7 -0.6,-1.2 -1.2,-1.2s-1.3,0.5 -1.3,1.2h-1.2c0,-1.3 1.3,-2.2 2.5,-2.2Z" />
+
+    <!-- Dot Below the Question Mark -->
+    <path
+        android:fillColor="@color/nav_drawer_icon_color"
+        android:pathData="M11.65,14a1.2,1.2 0 1,0 1.2,1.2a1.2,1.2 0 0,0 -1.2,-1.2Z" />
+</vector>

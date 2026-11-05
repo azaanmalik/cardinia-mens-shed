@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_home"
+        android:title="Home"
+        android:icon="@drawable/ic_home" />
+    <item
+        android:id="@+id/nav_join_event"
+        android:title="Join Event"
+        android:icon="@drawable/ic_join_event" />
+    <item
+        android:id="@+id/nav_book_event"
+        android:title="Book Event"
+        android:icon="@drawable/ic_book_event" />
+    <item
+        android:id="@+id/nav_chat_room"
+        android:title="Chat Room"
+        android:icon="@drawable/ic_chat" />
+    <item
+        android:id="@+id/nav_attendance"
+        android:title="Attendance"
+        android:icon="@drawable/ic_attendance" />
+    <item
+        android:id="@+id/nav_profile"
+        android:title="Profile"
+        android:icon="@drawable/ic_profile" />
+    <item
+        android:id="@+id/nav_help"
+        android:title="Help &amp; Support"
+        android:icon="@drawable/ic_help" />
+    <item
+        android:id="@+id/nav_logout"
+        android:title="Logout"
+        android:icon="@drawable/ic_logout" />
+</menu>
