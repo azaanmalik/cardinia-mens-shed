@@ -1,4 +1,16 @@
-# Cardinia Men's Shed — Community Android App
+<p align="center"><img src="docs/assets/banner.svg" alt="Cardinia Men's Shed community app" width="100%"></p>
+
+<p align="center">
+  <img alt="Android" src="https://img.shields.io/badge/Android-Java-2C5F95?style=flat-square&amp;logo=android&amp;logoColor=white">
+  <img alt="Firebase" src="https://img.shields.io/badge/Firebase-Authentication%20%26%20Firestore-E9B96E?style=flat-square&amp;logo=firebase&amp;logoColor=black">
+  <img alt="Supabase" src="https://img.shields.io/badge/Supabase-Storage-3B8A75?style=flat-square&amp;logo=supabase&amp;logoColor=white">
+  <a href="https://github.com/azaanmalik/cardinia-mens-shed/actions/workflows/android-ci.yml"><img alt="Android CI" src="https://github.com/azaanmalik/cardinia-mens-shed/actions/workflows/android-ci.yml/badge.svg"></a>
+  <a href="LICENSE"><img alt="License MIT" src="https://img.shields.io/badge/License-MIT-142B52?style=flat-square"></a>
+</p>
+
+> **An Android community hub for members to connect, discover events, manage attendance, chat and share marketplace listings.**
+
+— Community Android App
 
 Android community-management application built with **Java**, **Firebase Authentication**, **Cloud Firestore**, and **Supabase Storage**. Designed to support community engagement, events, attendance, chat, member profiles, and a member marketplace.
 
