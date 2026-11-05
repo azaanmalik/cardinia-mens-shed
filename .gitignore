@@ -1,0 +1,26 @@
+# Local IDE and build output
+*.iml
+.idea/
+.gradle/
+.kotlin/
+local.properties
+**/build/
+*.apk
+*.aab
+.cxx/
+.externalNativeBuild/
+captures/
+*.log
+# Cloud configuration and private keys
+app/google-services.json
+secrets.properties
+.env
+.env.*
+*.jks
+*.keystore
+# Member data
+*.db
+*.sqlite
+*.sqlite3
+.DS_Store
+Thumbs.db
