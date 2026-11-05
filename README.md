@@ -3,7 +3,7 @@
 <p align="center">
   <img alt="Android" src="https://img.shields.io/badge/Android-Java-2C5F95?style=flat-square&amp;logo=android&amp;logoColor=white">
   <img alt="Firebase" src="https://img.shields.io/badge/Firebase-Authentication%20%26%20Firestore-E9B96E?style=flat-square&amp;logo=firebase&amp;logoColor=black">
-  <img alt="Firebase" src="https://img.shields.io/badge/Firebase-Storage-3B8A75?style=flat-square&amp;logo=supabase&amp;logoColor=white">
+  <img alt="Firebase" src="https://img.shields.io/badge/Firebase-Storage-3B8A75?style=flat-square&amp;logo=firebase&amp;logoColor=white">
   <a href="https://github.com/azaanmalik/cardinia-mens-shed/actions/workflows/android-ci.yml"><img alt="Android CI" src="https://github.com/azaanmalik/cardinia-mens-shed/actions/workflows/android-ci.yml/badge.svg"></a>
   <a href="LICENSE"><img alt="License MIT" src="https://img.shields.io/badge/License-MIT-142B52?style=flat-square"></a>
 </p>
@@ -14,7 +14,7 @@
 
 Android community-management application built with **Java**, **Firebase Authentication**, **Cloud Firestore**, and **Firebase Storage**. Designed to support community engagement, events, attendance, chat, member profiles, and a member marketplace.
 
-> Portfolio project. This repository provides source code and setup guidance, but **does not include production cloud credentials, real member records, Firebase configuration or database rules**. Backend-dependent functions require separate configuration and access controls.
+> Portfolio project. This repository provides source code and setup guidance, but **does not include production cloud credentials, real member records or Firebase configuration**. Backend-dependent functions require separate configuration and access controls.
 
 ## Key modules
 
@@ -42,9 +42,9 @@ Android community-management application built with **Java**, **Firebase Authent
 1. Clone this repository and open the **root** (containing `settings.gradle.kts`) in Android Studio.
 2. Install **JDK 17** and Android SDK **Platform 35**, including required build tools, then sync Gradle.
 3. Create a Firebase project and register an Android app with package ID `com.example.cardiniamensshed`. Enable Email/Password authentication and set up Cloud Firestore. Obtain your own `google-services.json` from Firebase Console and place it at **`app/google-services.json`**; it is gitignored.
-4. Create a Firebase project and appropriate Storage buckets named `profile-pictures` and `event-images` (if you plan to use image upload). Add **public URL** and **anon/publishable client key**, *never* a `service_role`/secret key, to your **user-level** `~/.gradle/gradle.properties` (see `gradle-secrets.example.properties`).
-5. **Security requirement:** Firebase Auth identity is not automatically recognized by Firebase Auth or Firebase RLS. Direct Firebase Storage uploads require a correctly designed, restricted authorization solution (for example, a backend that verifies Firebase ID tokens and issues time-limited signed upload URLs). The original direct-upload architecture is **not production secure**; do not open public write access merely to make it work. Profile/event images may not upload until a secure integration is added.
-6. In Firebase, configure Firestore/Realtime Database **security rules and required indexes** for your own application. Do not use unrestricted public read/write rules.
+4. Enable **Firebase Storage** in the same Firebase project. You do **not** create separate buckets called `profile-pictures` or `event-images`; the app creates these as **folders** inside your Firebase Storage default bucket. Firebase Storage may require a billing-enabled Firebase plan, depending on current Firebase policy.
+5. In Firebase Console → Storage → Rules, review and deploy [`firebase/storage.rules`](firebase/storage.rules). These rules allow authenticated members to upload images to their own UID folder; they do not grant public write access. **Firebase Storage download URLs can be shared by anyone who possesses the token**, so review image privacy requirements before using real member photos.
+6. In Firebase Console, configure Firestore **security rules and required indexes** for the data collections used by the application. Rules are **not automatically deployed** by adding `google-services.json`; do not enable unrestricted public access. Firebase Realtime Database is needed only for features that actually use it.
 7. Run the `app` configuration on Android 7.0 (API 24) or newer. For a terminal build, run `./gradlew :app:assembleDebug :app:testDebugUnitTest` (Windows: `gradlew.bat`).
 
 ## Build / CI details
